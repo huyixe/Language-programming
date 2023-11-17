@@ -178,3 +178,180 @@ echo $emp['name'],'<br>'; //李白
 echo $emp['sex'],'<br>'; //男 
 echo $emp['age']; //22
 ?>
+
+$array=array(1=>'a','b','c','d'); 
+print_r($array); //Array ( [1] => a [2] => b [3] => c [4] => d ) 
+echo '<br>'; 
+-------------------------- 
+$array=array('a',2=>'b','c',5=>'d'); p
+rint_r($array); //Array ( [0] => a [2] => b [3] => c [5] => d ) 
+echo '<br>'; 
+---------------------------- 
+$array=array('a','name'=>'b','c','sex'=>'d'); 
+print_r($array); //Array ( [0] => a [name] => b [1] => c [sex] => d ) 
+echo '<br>'; 
+------------------------------ 
+$array=array(1=>'a',1=>'b',1=>'c','d'); 
+print_r($array); //Array ( [1] => c [2] => d )
+
+数组的下标只能是正整数和字符串
+$stu[true]='tom'; //转成1 
+$stu[false]='berry'; //转成0 
+$stu[12.9]='aa'; //转成12（取整数部分）
+$stu[-10]='bb'; //负数可以做下标 
+$stu[-12.3]='cc'; //取负整数 
+$stu['10']='dd'; //字符串数字转成数字 
+$stu['']='ee'; //空字符串也可以做下标 
+$stu[null]='ff'; //转成空字符串做下标 
+print_r($stu);
+短数组语法，可以直接通过中括号声明数组
+$stu=['tom','berry','ketty']; 
+print_r($stu); //Array ( [0] => tom [1] => berry [2] => ketty )
+多学一招：在PHP7.1中可以支持数组的赋值
+//例题，两个数交换 
+$num1=10; 
+$num2=20; 
+[$num1,$num2]=[$num2,$num1]; 
+echo $num1,'<br>',$num2;
+二维数组的声明
+$stu=[ 
+    ['name'=>'tom','sex'=>'男','age'=>22], 
+    ['name'=>'berry','sex'=>'女','age'=>23] 
+]; 
+echo '<pre>'; 
+print_r($stu); //运行结果 
+Array ( 
+    [0] => Array 
+        ( 
+            [name] => tom 
+            [sex] => 男 
+            [age] => 22 
+            ) 
+    [1] => Array 
+        ( 
+            [name] => berry 
+            [sex] => 女 
+            [age] => 23 
+            )
+)
+多学一招：字符串可以通过数组的方式去调用
+echo 'abc'[0],'<br>'; //a 
+echo 'abc'[-1],'<br>'; //c，从右边开始取第一个 7.1开始支持
+1.数组在内存中一段连续的空间 
+2、如果要保存同一类型的多个数据就使用数组
+
+3.3 特殊类型
+1、资源 
+2、null
+提醒：在PHP中 null和NULL是一样的，不区分大小写
+
+3.4 类型转换
+1、自动类型转换：当提供的类型和需要的类型不一致的时候会自动进行类型转换
+$num=10; 
+if($num){ //自动将数字转成布尔型 
+    echo 'aa'; 
+}else{ 
+    echo 'bb'; 
+} 
+--------------------------------- 
+echo '20'-10; //自动的将字符串转成数字
+2、强制类型转换
+语法：（数据类型）数据
+<?php 
+$num1='12'; 
+var_dump($num1,(int)$num1,(float)$num1); //string(2) "12" int(12) float(12)
+其他类型和布尔之间的转换 
+规则：0、空为假，非0非空为真
+<?php 
+var_dump((bool)'abc'); echo '<br>'; //bool(true) 
+var_dump((bool)''); echo '<br>'; //bool(false) 
+ var_dump((bool)'0'); echo '<br>'; //bool(false) 
+ var_dump((bool)'0.0'); echo '<br>'; //bool(true) 
+ var_dump((bool)'00'); echo '<br>'; //bool(true) 
+var_dump((bool)'false'); echo '<br>'; //bool(true) 
+var_dump((bool)'null'); echo '<br>'; //bool(true) 
+var_dump((bool)1); echo '<br>'; //bool(true) 
+var_dump((bool)0); echo '<br>'; //bool(false) 
+ var_dump((bool)-10); echo '<br>'; //bool(true) 
+ var_dump((bool)0.0); echo '<br>'; //bool(false) 
+ var_dump((bool)array()); echo '<br>'; //bool(false) 
+var_dump((bool)array(1)); echo '<br>'; //bool(true) 
+ var_dump((bool)array(false)); echo '<br>';//bool(true) 
+var_dump((bool)null); echo '<br>'; //bool(false)
+
+4 运算符
+
+4.1 算术运算符
+<?php echo '10'+'20','<br>'; //30 
+echo '10ab'+'20cd','<br>'; //30 
+echo 'ab10'+'cd20','<br>'; //0
+++前置：先自增再运算 
+++后置：先运算再自增
+$num=10;
+$num++;
+echo $num; //11
+$num=10;
+echo $num++; //10
+$num=10;
+echo ++$num; //11
+<?php 
+$num=5; 
+echo (++$num)+(++$num)+(++$num); //21
+<?php $num=5; 
+echo ($num++)+($num++)+($num++); //18
+
+4.2 关系运算符（比较运算符）
+> >= < <= == != === !==
+比较运算符的运算结果是布尔值
+
+4.3 逻辑运算符
+& 与：运算符两边的表达式都要计算 
+| 或：运算符两边的表达式都要计算 
+&& 短路与：如果前面的条件不满足，后面的条件就不用计算了 
+|| 短路或 
+! 非
+
+4.4 赋值运算符
+= //赋值 += //a+=b a=a+b -= *= /= %=
+
+4.5 字符串连接符(.)
+echo 'aa'.'bb'; //字符串链接 aabb
+
+4.6 错误抑制符(@)
+错误抑制符只对表达式有效
+<?php 
+echo @($aa+$bb); //错误抑制
+
+4.7 三元运算符(?:)
+
+4.8 null合并运算符(??)
+PHP7.0以后
+<?php 
+echo $name??'姓名不详'; //姓名不详
+
+
+isset()：判断变量是否被设置，并且设置的不是null 
+empty()：检查一个变量是否为空，能转成false全部是空，['',0,0.0,array(),null]
+
+5.判断
+5.1语法
+if(条件){ }
+if(条件){ //代码块1 }else{ //代码块2 }
+if(条件){ }elseif(条件){ //注意：elseif之间没有空格 }else{ }
+switch(表达式){ case 常量： //代码块 break; case 常量： //代码块 break; default: //代码块 }
+
+6.循环
+6.1for
+for(初始值;条件;增量){ //循环体 }
+for($i=1;$i!=5;$i++){ } //循环了4次
+在循环N次循环体中，初始值执行了几次？条件执行了几次？增量执行了几次？
+初始值执行了1次 条件执行了N+1次 增量执行了N次
+在循环执行完毕后，$i的值是存在的。
+<?php for($i=1;$i<=3;$i++){ } echo $i; //4
+
+6.2 while、do-while
+while(条件){ }
+do{ }while(条件)
+
+6.3多语句表达式
+初始值、增量可以由多条语句组成
