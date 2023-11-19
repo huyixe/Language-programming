@@ -61,4 +61,59 @@ public class Puppy{
 }
 
 
+import java.io.*;
+
+public class Employee {
+    String name;
+    int age;
+    String designation;
+    double salary;
+    //Employee class constructor
+    public Employee(String name) {
+    	this.name=name;
+    }
+    //set age
+    public void empAge(int empAge) {
+    	age=empAge;
+    }
+    /*set designation*/
+    public void empDesignation(String empDesig) {
+    	designation=empDesig;
+    }
+    /*set salary*/
+    public void empSalary(double empSalary) {
+    	salary=empSalary;
+    }
+    /*type information*/
+    public void printEmployee() {
+    	System.out.println("name:"+name);
+    	System.out.println("age:"+age);
+    	System.out.println("designation"+designation);
+    	System.out.println("salary:"+salary);
+    }
+}
+
+
+import java.io.*;
+
+public class EmployeeTest {
+    
+	public static void main(String[] args) {
+		Employee empOne=new Employee("RUNOOB1");
+		Employee empTwo=new Employee("RUNOOB2");
+		
+		//Call the member methods of both objects
+		empOne.empAge(26);
+		empOne.empDesignation("hige");
+		empOne.empSalary(1000);
+		empOne.printEmployee();
+		
+		empTwo.empAge(21);
+		empTwo.empDesignation("low");
+		empTwo.empSalary(500);
+		empTwo.printEmployee();
+	}
+	
+}
+
 
